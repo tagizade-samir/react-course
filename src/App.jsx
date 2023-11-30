@@ -1,44 +1,25 @@
 import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
-
-const Home = () => {
-  return (
-    <div>
-      <p>Home</p>
-    </div>
-  )
-}
-
-const About = () => {
-  return (
-    <div>
-      <p>About</p>
-    </div>
-  )
-}
-
-const Contact = () => {
-  return (
-    <div>
-      <p>Contact</p>
-    </div>
-  )
-}
+import {ROUTES} from './constants/routes'
+import {Main} from './screens/main/Main'
+import {Notes} from './screens/notes/Notes'
 
 const NavBar = () => {
   return (
-    <div>
-      <Link to={'/'}>Home</Link>
-      <Link to={'/contact'}>Contact</Link>
-      <Link to={'/about'}>About</Link>
-      <Link to={'/login'}>Login</Link>
-    </div>
-  )
-}
-
-const Login = () => {
-  return (
-    <div>
-      <p>Login</p>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        width: '100%',
+        backgroundColor: 'grey',
+        gap: 20,
+        padding: '20px 0px',
+      }}>
+      <Link style={{color: 'white', fontSize: 18}} to={ROUTES.MAIN}>
+        Home
+      </Link>
+      <Link style={{color: 'white', fontSize: 18}} to={ROUTES.NOTES}>
+        Notes
+      </Link>
     </div>
   )
 }
@@ -46,13 +27,13 @@ const Login = () => {
 export const App = () => {
   return (
     <BrowserRouter>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
+      <div style={{width: '100vw', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <NavBar />
+        <Routes>
+          <Route path={ROUTES.MAIN} element={<Main />} />
+          <Route path={ROUTES.NOTES} element={<Notes />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   )
 }
